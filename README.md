@@ -10,7 +10,7 @@ The rendering API is forced to be D3D11 (atleast, on ARM32/ARMv7) because of mis
 
 If there are any issues, never hesitate to open an issue!
 
-#Original README
+# Original README
 
 ## sm64ex
 
