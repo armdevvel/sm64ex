@@ -1,4 +1,19 @@
-# sm64ex
+# sm64ex - for ARM Windows
+Fork of [sm64pc/sm64ex](https://github.com/sm64pc/sm64ex) with fixed and patches for ARM Windows (ARMv7/Aarch64)
+
+You will need all dependencies from the normal build, with the addition of LLVM-MinGW. If you're building for ARM Windows, check out [here for MXE + ARM Windows integration](https://github.com/armdevvel/mxe). Builds will be ran as so:
+
+ARMv7/ARM32: `make CROSS=armv7-w64-mingw32- WINDOWS_BUILD=1 RENDER_API=D3D11 AUDIO_API=SDL2 DISCORDRPC=0`
+Aarch64/ARM64: `make CROSS=aarch64-w64-mingw32- WINDOWS_BUILD=1 RENDER_API=D3D11 AUDIO_API=SDL2 DISCORDRPC=0`
+
+The rendering API is forced to be D3D11 (atleast, on ARM32/ARMv7) because of missing DLLs or it is software only. On ARMv7, the game runs painfully slow because of only having DirectX11 SW, so a D3D9 port of fast-engine is being worked on, as Windows on ARM has hardware for DX9.
+
+If there are any issues, never hesitate to open an issue!
+
+#Original README
+
+## sm64ex
+
 Fork of [sm64-port/sm64-port](https://github.com/sm64-port/sm64-port) with additional features. 
 
 Feel free to report bugs and contribute, but remember, there must be **no upload of any copyrighted asset**. 
