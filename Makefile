@@ -97,11 +97,19 @@ endif
 # MXE overrides
 
 ifeq ($(WINDOWS_BUILD),1)
-  ifeq ($(CROSS),i686-w64-mingw32.static-)
+  ifeq ($(CROSS),i686-w64-mingw32-)
     TARGET_ARCH = i386pe
     TARGET_BITS = 32
     NO_BZERO_BCOPY := 1
-  else ifeq ($(CROSS),x86_64-w64-mingw32.static-)
+  else ifeq ($(CROSS),x86_64-w64-mingw32-)
+    TARGET_ARCH = i386pe
+    TARGET_BITS = 64
+    NO_BZERO_BCOPY := 1
+  else ifeq ($(CROSS),armv7-w64-mingw32-)
+    TARGET_ARCH = i386pe
+    TARGET_BITS = 32
+    NO_BZERO_BCOPY := 1
+  else ifeq ($(CROSS),aarch64-w64-mingw32-)
     TARGET_ARCH = i386pe
     TARGET_BITS = 64
     NO_BZERO_BCOPY := 1
@@ -513,9 +521,13 @@ LD := $(CC)
 ifeq ($(DISCORDRPC),1)
   LD := $(CXX)
 else ifeq ($(WINDOWS_BUILD),1)
-  ifeq ($(CROSS),i686-w64-mingw32.static-) # fixes compilation in MXE on Linux and WSL
+  ifeq ($(CROSS),i686-w64-mingw32-) # fixes compilation in MXE on Linux and WSL
     LD := $(CC)
-  else ifeq ($(CROSS),x86_64-w64-mingw32.static-)
+  else ifeq ($(CROSS),x86_64-w64-mingw32-)
+    LD := $(CC)
+  else ifeq ($(CROSS),armv7-w64-mingw32-)
+    LD := $(CC)
+  else ifeq ($(CROSS),aarch64-w64-mingw32-)
     LD := $(CC)
   else
     LD := $(CXX)
